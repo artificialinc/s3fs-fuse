@@ -1175,7 +1175,7 @@ bool S3fsCred::CheckIAMCredentialUpdate(std::string* access_key_id, std::string*
         *secret_access_key = AWSSecretAccessKey;
     }
     if(access_token){
-        if(IsIBMIAMAuth() || IsSetIAMRole(AutoLock::ALREADY_LOCKED) || is_ecs || is_use_session_token){
+        if(IsIBMIAMAuth() || IsSetIAMRole(AutoLock::ALREADY_LOCKED) || is_ecs || is_use_session_token || IsSetExtCredLib()){
             *access_token = AWSAccessToken;
         }else{
             access_token->erase();
