@@ -53,7 +53,7 @@
 const char* VersionS3fsCredential(bool detail)
 {
     static const char version[]        = "built-in";
-    static const char detail_version[] = 
+    static const char detail_version[] =
 		"s3fs-fuse built-in Credential I/F Function\n"
 		"Copyright(C) 2007 s3fs-fuse\n";
 
@@ -133,7 +133,7 @@ const char* S3fsCred::IAMv2_token_hdr           = "X-aws-ec2-metadata-token";
 std::string S3fsCred::bucket_name;
 
 //-------------------------------------------------------------------
-// Class Methods 
+// Class Methods
 //-------------------------------------------------------------------
 bool S3fsCred::SetBucket(const char* bucket)
 {
@@ -156,7 +156,7 @@ bool S3fsCred::ParseIAMRoleFromMetaDataResponse(const char* response, std::strin
     }
     // [NOTE]
     // expected following strings.
-    // 
+    //
     // myrolename
     //
     std::istringstream ssrole(response);
@@ -1570,7 +1570,7 @@ bool S3fsCred::CheckAllParams()
         return false;
     }
 
-    if(!S3fsCurl::IsPublicBucket() && !load_iamrole && !is_ecs){
+    if(!S3fsCurl::IsPublicBucket() && !load_iamrole && !is_ecs && !S3fsCred::IsSetExtCredLib()){
         if(!InitialS3fsCredentials()){
             return false;
         }
@@ -1579,7 +1579,7 @@ bool S3fsCred::CheckAllParams()
             return false;
         }
         // More error checking on the access key pair can be done
-        // like checking for appropriate lengths and characters  
+        // like checking for appropriate lengths and characters
     }
 
     // check IBM IAM requirements
